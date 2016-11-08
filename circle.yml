@@ -1,0 +1,11 @@
+machine:
+  java:
+    version: oraclejdk8
+
+dependencies:
+  override:
+    - . infra/pull-dependencies.sh
+
+test:
+  override:
+    - . infra/run-tests.sh

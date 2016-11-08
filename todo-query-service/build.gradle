@@ -1,0 +1,39 @@
+apply plugin: 'kotlin'
+apply plugin: 'application'
+
+mainClassName = 'org.elder.sourcerer.samples.todo.query.Application'
+
+dependencies {
+    compile "org.elder.sourcerer:sourcerer-core:$sourcererVersion"
+    compile "org.elder.sourcerer:sourcerer-esjc:$sourcererVersion"
+    compile project(':todo-query-domain')
+
+    // General purpose frameworks
+    compile 'org.jetbrains.kotlin:kotlin-stdlib:1.0.1'
+    compile 'com.google.guava:guava:19.0'
+
+    // Spring and web
+    compile 'org.springframework.boot:spring-boot:1.3.5.RELEASE'
+    compile 'org.springframework.boot:spring-boot-autoconfigure:1.3.5.RELEASE'
+    compile 'org.springframework:spring-web:4.2.6.RELEASE'
+    compile 'org.springframework:spring-webmvc:4.2.6.RELEASE'
+    compile 'org.springframework.data:spring-data-jpa:1.9.4.RELEASE'
+    compile 'io.undertow:undertow-servlet:1.3.22.Final'
+    compile 'io.swagger:swagger-annotations:1.5.8'
+    compile 'io.springfox:springfox-swagger2:2.4.0'
+    compile 'io.springfox:springfox-spring-web:2.4.0'
+    compile 'io.springfox:springfox-swagger-ui:2.4.0'
+
+    // Serialization
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.7.4'
+    compile 'com.fasterxml.jackson.module:jackson-module-kotlin:2.7.4'
+    compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.7.4'
+    compile 'org.yaml:snakeyaml:1.17'
+
+    // Persistence
+    compile 'org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.0.Final'
+    compile 'org.hibernate:hibernate-entitymanager:5.1.0.Final'
+    compile 'com.h2database:h2:1.3.148'
+
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}

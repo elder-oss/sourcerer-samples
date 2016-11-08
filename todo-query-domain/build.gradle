@@ -1,0 +1,13 @@
+apply plugin: 'kotlin'
+apply plugin: 'application'
+
+mainClassName = 'org.elder.sourcerer.samples.todo.Application'
+
+dependencies {
+    compile 'org.jetbrains.kotlin:kotlin-stdlib:1.0.1'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.7.4'
+    compile 'com.fasterxml.jackson.module:jackson-module-kotlin:2.7.4'
+    compile 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final'
+    compile 'com.google.guava:guava:19.0'
+    testCompile 'junit:junit:4.11'
+}
