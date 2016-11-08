@@ -46,4 +46,3 @@ events as these are emitted.
 
 The query service reads data from the persisted query model only, and has no direct dependencies
 on the events.
-
