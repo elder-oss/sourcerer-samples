@@ -1,7 +1,6 @@
 package org.elder.sourcerer.samples.todo.query.worklist;
 
 import io.swagger.annotations.Api;
-import org.elder.sourcerer.samples.todo.query.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,7 +21,7 @@ public class TodoWorklistQueryService {
     }
 
     @RequestMapping(value = "/todo/query/worklist", method = RequestMethod.GET)
-    public List<TodoWorklist.TodoSummary> getWorklist(@RequestParam String assignee) {
+    public List<TodoWorklist.TodoSummary> getWorklist(@RequestParam final String assignee) {
         TodoWorklist worklist = worklistRepository.findOne(assignee);
         if (worklist == null) {
             return new ArrayList<>();
