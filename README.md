@@ -7,7 +7,7 @@ tech at elder dot org.
 
 # Sourcerer
 
-For information about the Sourcerer framework, see the [sourcerer GitHub repository](adsfas)
+For information about the Sourcerer framework, see the [sourcerer GitHub repository](https://github.com/elder-oss/sourcerer).
 
 ## TODO Sourcerer Sample 
 
@@ -19,7 +19,7 @@ The sample is not intended to demonstrate best practice for production code (for
 no authentication), but rather to show off some of the building blocks in Sourcerer by implementing
 a simple event sourced data model with multiple query models derived off a single event stream.
 
-### Infratructure Dependencies
+### Infrastructure Dependencies
 
 The TODO sample needs an event repository backend, and by default uses EventStore through the ESJC
 client. As such, an EventStore server needs to be available, by default expected to be running on
@@ -39,7 +39,7 @@ The materializer is responsible for updating a persisted query model in a relati
 by the query service (see below). It opens a H2 web UI that can be used to directly inspect the
 generated data model.
 
-The materialier uses a Sourcerer subscription to update the persisted query model with data from
+The materializer uses a Sourcerer subscription to update the persisted query model with data from
 events as these are emitted.
 
 ### TODO Query Service
