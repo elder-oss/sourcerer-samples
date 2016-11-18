@@ -86,4 +86,28 @@ public class TodoItemService {
                 .run();
         return CommandResponse.of(result);
     }
+
+    @RequestMapping(value = "/todo/command/comment", method = RequestMethod.POST)
+    public CommandResponse comment(
+            @RequestParam final String todoId,
+            @RequestParam final String comment) {
+        CommandResult<TodoItemEvent> result = commandFactory
+                .fromOperation(Operations.updateOf(operations::addComment))
+                .setAggregateId(todoId)
+                .setArguments(new TodoItemOperations.AddCommentParams(comment))
+                .run();
+        return CommandResponse.of(result);
+    }
+
+    @RequestMapping(value = "/todo/command/commentAndClose", method = RequestMethod.POST)
+    public CommandResponse commentAndClose(
+            @RequestParam final String todoId,
+            @RequestParam final String comment) {
+        CommandResult<TodoItemEvent> result = commandFactory
+                .fromOperation(Operations.updateOf(operations::closeWithComment))
+                .setAggregateId(todoId)
+                .setArguments(new TodoItemOperations.AddCommentParams(comment))
+                .run();
+        return CommandResponse.of(result);
+    }
 }
