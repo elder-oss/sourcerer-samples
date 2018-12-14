@@ -1,7 +1,7 @@
 package org.elder.sourcerer.samples.todo.materializer
 
-import org.elder.sourcerer.EventRecord
-import org.elder.sourcerer.EventSubscriptionPositionSource
+import org.elder.sourcerer2.EventRecord
+import org.elder.sourcerer2.EventSubscriptionPositionSource
 import org.elder.sourcerer.samples.todo.events.TodoItemEvent
 import org.elder.sourcerer.samples.todo.query.details.TodoItemDetails
 import org.slf4j.LoggerFactory

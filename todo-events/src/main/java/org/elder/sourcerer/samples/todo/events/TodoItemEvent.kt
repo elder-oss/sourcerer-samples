@@ -2,7 +2,7 @@ package org.elder.sourcerer.samples.todo.events
 
 import com.fasterxml.jackson.annotation.JsonSubTypes
 import com.fasterxml.jackson.annotation.JsonTypeInfo
-import org.elder.sourcerer.EventType
+import org.elder.sourcerer2.EventType
 import java.time.Instant
 
 /**

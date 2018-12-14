@@ -1,9 +1,9 @@
 apply plugin: 'kotlin'
 
 dependencies {
-    compile "org.elder.sourcerer:sourcerer-core:$sourcererVersion"
-    compile 'org.jetbrains.kotlin:kotlin-stdlib:1.0.1'
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.7.4'
-    compile 'com.fasterxml.jackson.module:jackson-module-kotlin:2.7.4'
+    compile "org.elder.sourcerer2:sourcerer-core:$sourcererVersion"
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+    compile "com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion"
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }

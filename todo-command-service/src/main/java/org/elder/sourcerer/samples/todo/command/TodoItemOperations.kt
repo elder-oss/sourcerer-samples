@@ -1,8 +1,8 @@
 package org.elder.sourcerer.samples.todo.command
 
 import com.google.common.collect.ImmutableList
-import org.elder.sourcerer.Aggregate
-import org.elder.sourcerer.ImmutableAggregate
+import org.elder.sourcerer2.Aggregate
+import org.elder.sourcerer2.ImmutableAggregate
 import org.elder.sourcerer.samples.todo.events.TodoItemEvent
 import org.springframework.stereotype.Component
 

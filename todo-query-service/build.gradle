@@ -4,8 +4,8 @@ apply plugin: 'application'
 mainClassName = 'org.elder.sourcerer.samples.todo.query.Application'
 
 dependencies {
-    compile "org.elder.sourcerer:sourcerer-core:$sourcererVersion"
-    compile "org.elder.sourcerer:sourcerer-esjc:$sourcererVersion"
+    compile "org.elder.sourcerer2:sourcerer-core:$sourcererVersion"
+    compile "org.elder.sourcerer2:sourcerer-esjc:$sourcererVersion"
     compile project(':todo-query-domain')
 
     // General purpose frameworks

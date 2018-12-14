@@ -1,8 +1,8 @@
 package org.elder.sourcerer.samples.todo.materializer
 
-import org.elder.sourcerer.EventRecord
-import org.elder.sourcerer.EventSubscriptionHandlerBase
-import org.elder.sourcerer.EventSubscriptionPositionSource
+import org.elder.sourcerer2.EventRecord
+import org.elder.sourcerer2.EventSubscriptionHandlerBase
+import org.elder.sourcerer2.EventSubscriptionPositionSource
 import org.slf4j.Logger
 import java.util.function.Function
 import javax.persistence.EntityManager

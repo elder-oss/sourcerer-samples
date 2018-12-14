@@ -1,6 +1,6 @@
 package org.elder.sourcerer.samples.todo.command
 
-import org.elder.sourcerer.AggregateProjection
+import org.elder.sourcerer2.AggregateProjection
 import org.elder.sourcerer.samples.todo.events.TodoItemEvent
 
 class TodoItemProjection : AggregateProjection<TodoItem, TodoItemEvent> {
