@@ -3,4 +3,4 @@ server:
 ---
 sourcerer:
   eventstore:
-    namespace: sourcerer_todo
+    namespace: sourcerer_todo_2

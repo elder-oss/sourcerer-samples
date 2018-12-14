@@ -1,18 +1,19 @@
 package org.elder.sourcerer.samples.todo.command
 
-import org.elder.sourcerer2.AggregateProjection
 import org.elder.sourcerer.samples.todo.events.TodoItemEvent
+import org.elder.sourcerer2.AggregateProjection
+import org.elder.sourcerer2.StreamId
 
 class TodoItemProjection : AggregateProjection<TodoItem, TodoItemEvent> {
     override fun empty(): TodoItem {
         return TodoItem()
     }
 
-    override fun apply(id : String, state: TodoItem, eventData: TodoItemEvent): TodoItem {
+    override fun apply(id: StreamId, state: TodoItem, eventData: TodoItemEvent): TodoItem {
         return when (eventData) {
             is TodoItemEvent.Created ->
                 state.copy(
-                        createdBy =  eventData.createdBy,
+                        createdBy = eventData.createdBy,
                         description = eventData.description)
             is TodoItemEvent.AssignedTo ->
                 state.copy(assignedTo = eventData.assignee)

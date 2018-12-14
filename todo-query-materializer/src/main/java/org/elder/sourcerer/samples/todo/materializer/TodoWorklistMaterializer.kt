@@ -5,6 +5,7 @@ import org.elder.sourcerer2.EventSubscriptionPositionSource
 import org.elder.sourcerer.samples.todo.events.TodoItemEvent
 import org.elder.sourcerer.samples.todo.query.worklist.TodoItemState
 import org.elder.sourcerer.samples.todo.query.worklist.TodoWorklist
+import org.elder.sourcerer2.RepositoryVersion
 import java.util.ArrayList
 import javax.inject.Inject
 import javax.persistence.EntityManager
@@ -25,10 +26,11 @@ constructor(entityManagerFactory: EntityManagerFactory) :
 
     private fun processEvent(
             eventRecord: EventRecord<TodoItemEvent>,
-            entityManager: EntityManager) {
-        val todoId = eventRecord.streamId
+            entityManager: EntityManager
+    ) {
+        val todoId = eventRecord.streamId.identifier
         val event = eventRecord.event
-        val eventVersion = eventRecord.streamVersion
+        val eventVersion = eventRecord.repositoryVersion!!
         val existingState = entityManager.find(TodoItemState::class.java, todoId)
         val state = existingState ?: TodoItemState(todoId)
         val currentAssignee = state.assignee
@@ -73,10 +75,11 @@ constructor(entityManagerFactory: EntityManagerFactory) :
             entityManager: EntityManager,
             assignee: String,
             todoId: String,
-            eventVersion: Int) {
+            subscriptionVersion: RepositoryVersion
+    ) {
         val worklist = entityManager.find(TodoWorklist::class.java, assignee)
         worklist.tasks = worklist.tasks?.filter { it.todoId != todoId }
-        worklist.eventVersion = eventVersion
+        worklist.subscriptionVersion = subscriptionVersion.version
         entityManager.persist(worklist)
     }
 
@@ -85,22 +88,23 @@ constructor(entityManagerFactory: EntityManagerFactory) :
             assignee: String,
             todoId: String,
             description: String?,
-            eventVersion: Int) {
+            subscriptionVersion: RepositoryVersion
+    ) {
         val worklist = entityManager.find(TodoWorklist::class.java, assignee)
                 ?: TodoWorklist(assignee)
         val currentTasks = worklist.tasks ?: listOf<TodoWorklist.TodoSummary>()
         val newTasks = ArrayList(currentTasks.filter { it.todoId != todoId })
         newTasks.add(TodoWorklist.TodoSummary(todoId, description))
-        worklist.eventVersion = eventVersion
+        worklist.subscriptionVersion = subscriptionVersion.version
         worklist.tasks = newTasks
         entityManager.persist(worklist)
     }
 
-    override fun getSubscriptionPosition(entityManager: EntityManager): Int? {
+    override fun getSubscriptionPosition(entityManager: EntityManager): String? {
         val cq = entityManager.criteriaBuilder
-        var query = cq.createQuery(Int::class.java)
+        var query = cq.createQuery(String::class.java)
         val root = query.from(TodoWorklist::class.java)
-        query = query.select(cq.max(root.get("eventVersion")))
+        query = query.select(cq.greatest(root.get("subscriptionVersion")))
         return entityManager.createQuery(query).singleResult
     }
 }

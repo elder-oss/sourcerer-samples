@@ -1,9 +1,10 @@
 package org.elder.sourcerer.samples.todo.materializer
 
-import org.elder.sourcerer2.EventRecord
-import org.elder.sourcerer2.EventSubscriptionPositionSource
 import org.elder.sourcerer.samples.todo.events.TodoItemEvent
 import org.elder.sourcerer.samples.todo.query.details.TodoItemDetails
+import org.elder.sourcerer2.EventRecord
+import org.elder.sourcerer2.EventSubscriptionPositionSource
+import org.elder.sourcerer2.RepositoryVersion
 import org.slf4j.LoggerFactory
 import javax.inject.Inject
 import javax.persistence.EntityManager
@@ -31,7 +32,7 @@ constructor(entityManagerFactory: EntityManagerFactory) :
             entityManager: EntityManager) {
         val event = eventRecord.event
         val existingDetails = entityManager.find(TodoItemDetails::class.java, eventRecord.streamId)
-        val details = existingDetails ?: TodoItemDetails(eventRecord.streamId)
+        val details = existingDetails ?: TodoItemDetails(eventRecord.streamId.identifier)
 
         when (event) {
             is TodoItemEvent.Created -> {
@@ -57,15 +58,16 @@ constructor(entityManagerFactory: EntityManagerFactory) :
             }
         }
 
-        details.version = eventRecord.streamVersion
+        details.aggregateVersion = eventRecord.streamVersion.version
+        details.subscriptionVersion = eventRecord.repositoryVersion?.version
         entityManager.persist(details)
     }
 
-    override fun getSubscriptionPosition(entityManager: EntityManager): Int? {
+    override fun getSubscriptionPosition(entityManager: EntityManager): String? {
         val cq = entityManager.criteriaBuilder
-        var query = cq.createQuery(Int::class.java)
+        var query = cq.createQuery(String::class.java)
         val root = query.from(TodoItemDetails::class.java)
-        query = query.select(cq.max(root.get("version")))
+        query = query.select(cq.greatest(root.get("subscriptionVersion")))
         return entityManager.createQuery(query).singleResult
     }
 }

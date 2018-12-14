@@ -10,8 +10,8 @@ dependencies {
     compile "org.elder.sourcerer2:sourcerer-esjc:$sourcererVersion"
     compile "org.elder.sourcerer2:sourcerer-esjc-spring:$sourcererVersion"
     compile "org.elder.sourcerer2:sourcerer-spring:$sourcererVersion"
-    compile 'org.jetbrains.kotlin:kotlin-stdlib:1.0.1'
-    compile 'com.google.guava:guava:19.0'
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    compile "com.google.guava:guava:$guavaVersion"
     compile 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final'
     compile 'org.hibernate:hibernate-entitymanager:5.1.0.Final'
     compile 'com.h2database:h2:1.3.148'

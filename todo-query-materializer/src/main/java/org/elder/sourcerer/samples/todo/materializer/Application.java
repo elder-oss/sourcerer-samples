@@ -4,11 +4,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.module.kotlin.KotlinModule;
 import com.github.msemys.esjc.EventStore;
 import com.github.msemys.esjc.EventStoreBuilder;
-import org.elder.sourcerer.DefaultEventSubscriptionFactory;
-import org.elder.sourcerer.EventRepository;
-import org.elder.sourcerer.EventSubscription;
-import org.elder.sourcerer.EventSubscriptionFactory;
-import org.elder.sourcerer.esjc.EventStoreEsjcEventRepositoryFactory;
+import org.elder.sourcerer2.DefaultEventSubscriptionFactory;
+import org.elder.sourcerer2.EventRepository;
+import org.elder.sourcerer2.EventSubscription;
+import org.elder.sourcerer2.EventSubscriptionFactory;
+import org.elder.sourcerer2.esjc.EventStoreEsjcEventRepositoryFactory;
 import org.elder.sourcerer.samples.todo.events.TodoItemEvent;
 import org.elder.sourcerer.samples.todo.query.converters.JsonConverter;
 import org.h2.tools.Server;
@@ -40,7 +40,7 @@ public class Application {
                 .newBuilder()
                 .userCredentials("admin", "changeit")
                 .singleNodeAddress("localhost", 1113)
-                .failOnNoServerResponseEnabled()
+                .failOnNoServerResponse(true)
                 .build();
 
         EventStoreEsjcEventRepositoryFactory repositoryFactory =

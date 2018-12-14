@@ -14,7 +14,8 @@ import java.time.Instant;
 public class TodoItemDetails {
     @Id
     private String todoItemId;
-    private int version;
+    private String aggregateVersion;
+    private String subscriptionVersion;
     private String creator;
     private String description;
     private String assignee;
@@ -31,12 +32,20 @@ public class TodoItemDetails {
         this.todoItemId = todoItemId;
     }
 
-    public int getVersion() {
-        return version;
+    public String getAggregateVersion() {
+        return aggregateVersion;
     }
 
-    public void setVersion(final int version) {
-        this.version = version;
+    public void setAggregateVersion(final String aggregateVersion) {
+        this.aggregateVersion = aggregateVersion;
+    }
+
+    public String getSubscriptionVersion() {
+        return subscriptionVersion;
+    }
+
+    public void setSubscriptionVersion(final String subscriptionVersion) {
+        this.subscriptionVersion = subscriptionVersion;
     }
 
     public String getTodoItemId() {
@@ -93,5 +102,20 @@ public class TodoItemDetails {
 
     public void setCompletionTimestamp(final Instant completionTimestamp) {
         this.completionTimestamp = completionTimestamp;
+    }
+
+    @Override
+    public String toString() {
+        return "TodoItemDetails{" +
+                "todoItemId='" + todoItemId + '\'' +
+                ", aggregateVersion='" + aggregateVersion + '\'' +
+                ", subscriptionVersion='" + subscriptionVersion + '\'' +
+                ", creator='" + creator + '\'' +
+                ", description='" + description + '\'' +
+                ", assignee='" + assignee + '\'' +
+                ", completed=" + completed +
+                ", creationTimestamp=" + creationTimestamp +
+                ", completionTimestamp=" + completionTimestamp +
+                '}';
     }
 }

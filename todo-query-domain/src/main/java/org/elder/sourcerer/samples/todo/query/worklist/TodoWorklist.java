@@ -51,7 +51,7 @@ public class TodoWorklist {
     @Convert(converter = TasksConverter.class)
     private List<TodoSummary> tasks;
 
-    private Integer eventVersion;
+    private String subscriptionVersion;
 
     public TodoWorklist() {
     }
@@ -76,12 +76,12 @@ public class TodoWorklist {
         this.tasks = tasks;
     }
 
-    public Integer getEventVersion() {
-        return eventVersion;
+    public String getSubscriptionVersion() {
+        return subscriptionVersion;
     }
 
-    public void setEventVersion(final Integer eventVersion) {
-        this.eventVersion = eventVersion;
+    public void setSubscriptionVersion(final String subscriptionVersion) {
+        this.subscriptionVersion = subscriptionVersion;
     }
 
     @Override
@@ -89,7 +89,7 @@ public class TodoWorklist {
         return "TodoWorklist{" +
                 "assignee='" + assignee + '\'' +
                 ", tasks=" + tasks +
-                ", eventVersion=" + eventVersion +
+                ", subscriptionVersion='" + subscriptionVersion + '\'' +
                 '}';
     }
 }
