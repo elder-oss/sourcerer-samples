@@ -2,7 +2,7 @@ CREATE TABLE events (
   stream_id VARCHAR(128) NOT NULL,
   category VARCHAR(32) NOT NULL,
   shard INT NOT NULL,
-  timestamp TIMESTAMP(6) NOT NULL,
+  timestamp TIMESTAMP(6) NOT NULL DEFAULT 0,
   transaction_seq_nr INT NOT NULL,
   event_id VARCHAR(36) NOT NULL,
   event_type VARCHAR(64) NOT NULL,
@@ -17,4 +17,9 @@ CREATE UNIQUE INDEX category_idx ON events (
   timestamp,
   stream_id,
   transaction_seq_nr
+);
+
+# For our manual timestamp claim logic
+CREATE INDEX timestamp_idx ON events (
+  timestamp
 );
