@@ -1,4 +1,4 @@
-package org.elder.sourcerer.samples.todo.command;
+package org.elder.sourcerer.samples.todo.command.eventstore;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.Api;

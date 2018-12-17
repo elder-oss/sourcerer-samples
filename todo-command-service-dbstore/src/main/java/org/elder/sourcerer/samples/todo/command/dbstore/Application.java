@@ -1,8 +1,7 @@
-package org.elder.sourcerer.samples.todo.command;
+package org.elder.sourcerer.samples.todo.command.dbstore;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.Api;
-import org.elder.soucerer.eventstore.EventStoreConfiguration;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,7 +20,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableSwagger2
 @Configuration
-@Import(EventStoreConfiguration.class)
+@Import(DbstoreConfiguration.class)
 @ComponentScan("org.elder.sourcerer")
 public class Application {
     public static void main(final String[] args) {

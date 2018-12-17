@@ -1,6 +1,0 @@
-server:
-  port: 8801
----
-sourcerer:
-  eventstore:
-    namespace: sourcerer_todo_2

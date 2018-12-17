@@ -2,5 +2,9 @@ server:
   port: 8801
 ---
 sourcerer:
-  eventstore:
+  dbstore:
     namespace: sourcerer_todo_2
+    jdbc:
+      dbUrl: jdbc:mysql://localhost:3306/events_test?useTimezone=true&serverTimezone=UTC
+      dbUsername: root
+      dbPassword: pa55w0rd

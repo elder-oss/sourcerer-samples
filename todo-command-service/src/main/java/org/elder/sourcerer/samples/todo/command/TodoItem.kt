@@ -9,5 +9,5 @@ data class TodoItem(
         val assignedTo: String? = null,
         val isCompleted: Boolean = false,
         val isDeleted: Boolean = false,
-        val comments : List<String> = listOf())
-
+        val comments : List<String> = listOf()
+)
