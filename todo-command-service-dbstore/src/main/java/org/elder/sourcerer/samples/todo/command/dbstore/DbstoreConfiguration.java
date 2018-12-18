@@ -37,17 +37,12 @@ public class DbstoreConfiguration {
     @Bean
     @Scope(BeanDefinition.SCOPE_SINGLETON)
     public DbstoreEventStore getEventStoreConnection(
-            @Qualifier("eventsDbSource")
-            final DataSource dataSource,
-            @Value("${sourcerer.dbstore.shards:4}")
-            final int shards,
-            @Value("${sourcerer.dbstore.jdbc.eventsTableName:events}")
-            final String eventsTableName
+            @Qualifier("eventsDbSource") final DataSource dataSource,
+            @Value("${sourcerer.dbstore.jdbc.eventsTableName:events}") final String eventsTableName
     ) {
         return new JdbcEventStore(
                 dataSource,
                 eventsTableName,
-                shards,
                 2048
         );
     }
@@ -57,14 +52,14 @@ public class DbstoreConfiguration {
     public EventRepositoryFactory getEventRepositoryFactory(
             final DbstoreEventStore eventStore,
             final ObjectMapper objectMapper,
-            @Value("${sourcerer.dbstore.eventstore.shards:4}") final int shards,
+            @Value("${sourcerer.dbstore.shards:4}") final int shards,
             @Value("${sourcerer.dbstore.namespace}") final String namespace
     ) {
         return new DbstoreEventRepositoryFactory(
                 eventStore,
-                shards,
                 objectMapper,
-                namespace.trim()
+                namespace.trim(),
+                shards
         );
     }
 }

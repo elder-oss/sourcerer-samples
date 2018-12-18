@@ -4,6 +4,7 @@ server:
 sourcerer:
   dbstore:
     namespace: sourcerer_todo_2
+    shards: 4
     jdbc:
       dbUrl: jdbc:mysql://localhost:3306/events_test?useTimezone=true&serverTimezone=UTC
       dbUsername: root

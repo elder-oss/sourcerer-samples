@@ -1,19 +1,21 @@
 CREATE TABLE events (
+  stream_hash INT NOT NULL,
+  namespace VARCHAR(32) NOT NULL,
+  repository VARCHAR(32) NOT NULL,
   stream_id VARCHAR(128) NOT NULL,
-  category VARCHAR(32) NOT NULL,
-  shard INT NOT NULL,
-  timestamp TIMESTAMP(6) NOT NULL DEFAULT 0,
+  timestamp TIMESTAMP(6) NOT NULL,
   transaction_seq_nr INT NOT NULL,
   event_id VARCHAR(36) NOT NULL,
   event_type VARCHAR(64) NOT NULL,
   data TEXT NOT NULL,
   metadata TEXT NOT NULL,
-  PRIMARY KEY (stream_id, category, timestamp, transaction_seq_nr)
+  PRIMARY KEY (stream_hash, namespace, repository, stream_id, timestamp, transaction_seq_nr)
 );
 
-CREATE UNIQUE INDEX category_idx ON events (
-  category,
-  shard,
+CREATE UNIQUE INDEX repository_idx ON events (
+  stream_hash,
+  namespace,
+  repository,
   timestamp,
   stream_id,
   transaction_seq_nr
@@ -21,5 +23,7 @@ CREATE UNIQUE INDEX category_idx ON events (
 
 # For our manual timestamp claim logic
 CREATE INDEX timestamp_idx ON events (
+  namespace,
+  repository,
   timestamp
 );
