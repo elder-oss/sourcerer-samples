@@ -1,18 +1,19 @@
 package org.elder.sourcerer.samples.todo.materializer
 
+import org.elder.sourcerer2.EventRecord
+import org.elder.sourcerer2.EventSubscriptionPositionSource
 import org.elder.sourcerer.samples.todo.events.TodoItemEvent
 import org.elder.sourcerer.samples.todo.query.worklist.TodoItemState
 import org.elder.sourcerer.samples.todo.query.worklist.TodoWorklist
-import org.elder.sourcerer2.EventRecord
-import org.elder.sourcerer2.EventSubscriptionPositionSource
 import org.elder.sourcerer2.RepositoryVersion
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import java.util.ArrayList
+import javax.inject.Inject
 import javax.persistence.EntityManager
 import javax.persistence.EntityManagerFactory
 
-class TodoWorklistMaterializer(entityManagerFactory: EntityManagerFactory) :
+class TodoWorklistMaterializer
+@Inject
+constructor(entityManagerFactory: EntityManagerFactory) :
         MaterializerBase<TodoItemEvent>(
                 entityManagerFactory,
                 TodoItemDetailsMaterializer.logger)
@@ -27,7 +28,6 @@ class TodoWorklistMaterializer(entityManagerFactory: EntityManagerFactory) :
             eventRecord: EventRecord<TodoItemEvent>,
             entityManager: EntityManager
     ) {
-        logger.info("Processing {} for {} ({})", eventRecord.event, eventRecord.streamId, eventRecord.repositoryVersion)
         val todoId = eventRecord.streamId.identifier
         val event = eventRecord.event
         val eventVersion = eventRecord.repositoryVersion!!
@@ -106,9 +106,5 @@ class TodoWorklistMaterializer(entityManagerFactory: EntityManagerFactory) :
         val root = query.from(TodoWorklist::class.java)
         query = query.select(cq.greatest(root.get("subscriptionVersion")))
         return entityManager.createQuery(query).singleResult
-    }
-
-    companion object {
-        val logger: Logger = LoggerFactory.getLogger(TodoWorklistMaterializer::class.java)
     }
 }

@@ -1,7 +1,9 @@
 include 'todo-events',
         'todo-command-service',
-        'todo-command-service-esjc',
+        // 'todo-command-service-esjc',
         'todo-command-service-dbstore',
         'todo-query-domain',
         'todo-query-service',
-        'todo-query-materializer'
+        'todo-query-materializer',
+        'todo-query-materializer-dbstore'
+        // 'todo-query-materializer-esjc'

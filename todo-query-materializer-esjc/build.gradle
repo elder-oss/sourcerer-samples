@@ -7,6 +7,9 @@ dependencies {
     compile project(':todo-events')
     compile project(':todo-query-domain')
     compile "org.elder.sourcerer2:sourcerer-core:$sourcererVersion"
+    compile "org.elder.sourcerer2:sourcerer-esjc:$sourcererVersion"
+    compile "org.elder.sourcerer2:sourcerer-esjc-spring:$sourcererVersion"
+    compile "org.elder.sourcerer2:sourcerer-spring:$sourcererVersion"
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     compile "com.google.guava:guava:$guavaVersion"
     compile 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final'
